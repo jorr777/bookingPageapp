@@ -1,0 +1,31 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.days{
+    margin-top: 30px;
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: auto;
+}
+
+.days_item{
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.products{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product_item{
+    padding: 50px;
+    border: 1px solid black;
+}
