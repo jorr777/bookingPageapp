@@ -17,6 +17,7 @@ const Login = () => {
     password: '',
   })
 
+  const [validError, setValidError] = useState()
 
 
 
@@ -26,6 +27,12 @@ const Login = () => {
 
   const registerSubmit = (e) => {
     e.preventDefault()
+    for (let key in registerDate) {
+      if (registerDate[key] === '') {
+        setValidError(`${key} Field isEmpty`)
+        return
+      }
+    }
     dispatch(userLogin(registerDate))
     navigate(LOGIN_ROUTE)
   }
@@ -33,10 +40,11 @@ const Login = () => {
   return (
     <form className='Authentication' onSubmit={registerSubmit}>
       <div className='Auth'>
-        <TextField label='Email' sx={{width:1, p:'10px 0'}} variant="outlined" value={registerDate.email} onChange={(e) => onChange(e, 'email')} placeholder='email' />
-        <TextField label='Password' sx={{width:1, p:'10px 0'}} variant="outlined" value={registerDate.password} onChange={(e) => onChange(e, 'password')} />
-        <Button variant="outlined" sx={{p:'10px' , m:'1px'}} type='submit'>submit</Button>
-        <Button sx={{p:'10px' , m:'1px'}} onClick={() => {
+        <TextField label='Email' sx={{ width: 1, p: '10px 0' }} variant="outlined" value={registerDate.email} onChange={(e) => onChange(e, 'email')} placeholder='email' />
+        <TextField label='Password' sx={{ width: 1, p: '10px 0' }} type='password' variant="outlined" value={registerDate.password} onChange={(e) => onChange(e, 'password')} />
+        <Button variant="outlined" sx={{ p: '10px', m: '1px' }} type='submit'>submit</Button>
+        <p style={{ color: 'red' }}>{validError}</p>
+        <Button sx={{ p: '10px', m: '1px' }} onClick={() => {
           navigate(REGISTER_ROUTE)
         }}>To Register </Button>
       </div>
@@ -45,4 +53,3 @@ const Login = () => {
 }
 
 export default Login
-
