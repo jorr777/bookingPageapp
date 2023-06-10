@@ -108,6 +108,7 @@ const Days = () => {
                 {days.map(el => {
                     return <p key={el.day} className='days_item' onClick={() => {
                         getProduct(el.dateNow);
+                        setSelecedProdcuts([])
                     }}>{el.day}</p>
                 }
                 )}
