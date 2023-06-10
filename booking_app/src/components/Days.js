@@ -131,7 +131,7 @@ const Days = () => {
             </div>
             <button disabled={!selectedProducts.length ? true : false} onClick={() => {
                 addToCart()
-            }}>Continue</button>
+            }}>Add To Cart</button>
         </div>
     )
 }
