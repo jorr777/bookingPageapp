@@ -71,7 +71,7 @@ export const register = async (req, res) => {
         const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling: true });
         const chatId = process.env.CHAT_ID
         console.log(chatId);
-        bot.sendMessage(chatId, `${req.body.fullName} is Registered yay` + req)
+        bot.sendMessage(chatId, `${req.body.fullName} is Registered yay`)
 
         const { passwordHash, ...userData } = user._doc
         res.json({ ...userData, token })
