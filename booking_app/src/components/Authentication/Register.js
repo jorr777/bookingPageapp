@@ -14,6 +14,7 @@ const Register = () => {
         password: '',
         phoneNumber: ''
     })
+    const [validError, setValidError] = useState()
 
     const onChange = (e, field) => {
         setRegisterDate({ ...registerDate, [field]: e.target.value })
@@ -21,6 +22,12 @@ const Register = () => {
 
     const registerSubmit = (e) => {
         e.preventDefault()
+        for (let key in registerDate) {
+            if (registerDate[key] === '') {
+                setValidError(`${key} Field isEmpty`)
+                return
+            }
+        }
         axios.post('http://localhost:5000/auth/register', {
             ...registerDate
         }).then(res => {
@@ -39,10 +46,13 @@ const Register = () => {
                 <TextField label='Email' sx={{ width: 1, p: '10px 0' }} variant="outlined" value={registerDate.email} onChange={(e) => onChange(e, 'email')} placeholder='email' />
                 <TextField label='password' sx={{ width: 1, p: '10px 0' }} type="password" value={registerDate.password} onChange={(e) => onChange(e, 'password')} placeholder={'Create Password'} />
                 <TextField label='number' sx={{ width: 1, p: '10px 0' }} type="number" value={registerDate.phoneNumber} onChange={(e) => onChange(e, 'phoneNumber')} placeholder='Enter your Phone Number' />
-                <Button variant="outlined" sx={{ p: '10px', m: '1px' }} type='submit'>submit</Button>
+                <p style={{color:'red'}}>{validError}</p>
+                {/* {submited ? } */}
+                <Button variant="outlined" sx={{ p: '10px', mt:'10px' }} type='submit'>submit</Button>
             </div>
         </form>
     )
 }
 
 export default Register
+
