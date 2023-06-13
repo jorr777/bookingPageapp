@@ -17,8 +17,9 @@ const Days = () => {
 
 
     useEffect(() => {
+        const dateNow = new Date();
         getTimeRemaining()
-        getProduct(new Date())
+        getProduct(new Date(dateNow.getFullYear(), dateNow.getMonth(), dateNow.getDate()))
     }, [])
 
     function getTimeRemaining() {
@@ -114,7 +115,7 @@ const Days = () => {
                 )}
             </div>
             <div className='products'>
-                {products.map(el => {
+                {products.length && products.map(el => {
                     return <div key={el.productName} className='product_item'>
                         <p>Name {el.productName}</p>
                         <p>Price is {el.price}</p>
@@ -131,9 +132,10 @@ const Days = () => {
             </div>
             <button disabled={!selectedProducts.length ? true : false} onClick={() => {
                 addToCart()
-            }}>Add To Cart</button>
+            }}>Add to Cart</button>
         </div>
     )
 }
 
 export default Days
+
